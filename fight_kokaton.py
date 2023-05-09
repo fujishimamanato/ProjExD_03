@@ -127,7 +127,7 @@ class Beam:
     """
     def __init__(self, bird: Bird):
         """
-        割愛
+        ビームを生成する
         """
         self._img = pg.transform.rotozoom(pg.image.load(f"ex03/fig/beam.png"), 0, 2.0)  # 画像surface
         self._rct = self._img.get_rect()  # 画像surfaceに対応したrect
@@ -144,14 +144,17 @@ class Beam:
         screen.blit(self._img, self._rct)
 
 
+
 def main():
+    score = 0
+    font1 = pg.font.SysFont("メイリオ", 40)  # フォントの設定
     pg.display.set_caption("たたかえ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     clock = pg.time.Clock()
     bg_img = pg.image.load("ex03/fig/pg_bg.jpg")
 
     bird = Bird(3, (900, 400))
-    bombs = [Bomb() for _ in range(NUM_OF_BOMBS)]
+    bombs = [Bomb() for _ in range(NUM_OF_BOMBS)]   
     beam = None
 
     tmr = 0
@@ -185,7 +188,10 @@ def main():
                     beam = None
                     del bombs[i]
                     bird.change_img(6, screen)
+                    score += 1
                     break
+        text = font1.render("score" + str(score), True, (25,25,25))
+        screen.blit(text,(40,70))
 
         pg.display.update()
         clock.tick(1000)
