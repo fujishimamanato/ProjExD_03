@@ -190,8 +190,8 @@ def main():
                     bird.change_img(6, screen)
                     score += 1
                     break
-        text = font1.render("score" + str(score), True, (25,25,25))
-        screen.blit(text,(40,70))
+        text = font1.render("score" + str(score), True, (25,25,25))   #　追加機能  １
+        screen.blit(text,(40,70))   # 追加機能　１
 
         pg.display.update()
         clock.tick(1000)
